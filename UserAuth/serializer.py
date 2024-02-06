@@ -7,14 +7,13 @@ class UserModelSerializer(ModelSerializer):
 
     class Meta:
         model = UserModel
-        fields = ['id','username','first_name', 'last_name', 'email', 'password', 'phone_number','profile_picture']
+        fields = ['id','username','first_name', 'last_name', 'email', 'password','profile_picture']
 
     def create(self, validated_data):
         user = UserModel.objects.create(
             first_name=validated_data['first_name'],
             last_name=validated_data['last_name'],
             email=validated_data['email'],
-            phone_number=validated_data['phone_number']
         )
         user.set_password(validated_data['password'])
         user.save()
@@ -29,7 +28,7 @@ class UserModelSerializer(ModelSerializer):
         instance.first_name = validated_data.get('first_name', instance.first_name)
         instance.last_name = validated_data.get('last_name', instance.last_name)
         instance.email = validated_data.get('email', instance.email)
-        instance.phone_number = validated_data.get('phone_number', instance.phone_number)
+        # instance.phone_number = validated_data.get('phone_number', instance.phone_number)
 
         instance.save()
         return instance

@@ -3,7 +3,7 @@ from .models import UserModel
 # Register your models here.
 
 class UserModelAdmin(admin.ModelAdmin):
-    list_display = ['id','username','first_name','last_name','email','phone_number','is_superuser','profile_picture']
+    list_display = ['id','username','first_name','last_name','email','is_superuser','profile_picture']
     ordering = ['id']
 
 

@@ -8,7 +8,7 @@ class UserModel(AbstractUser):
 
     username = models.CharField(max_length=255,unique = True,default='default_username')
     email = models.EmailField(unique = True)
-    phone_number = models.CharField(max_length=10)
+    # phone_number = models.CharField(max_length=10)
     profile_picture = models.ImageField(upload_to='profile_pics/', blank=True, null=True)
     # if method =='PUT':
     #     email = models.EmailField()
