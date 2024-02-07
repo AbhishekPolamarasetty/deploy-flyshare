@@ -8,7 +8,7 @@
     font-family: 'Poppins', sans-serif;
 }
 body{
-    background: url(https://img.freepik.com/free-vector/biophilic-design-workspace-abstract-concept-illustration-biophilic-room-eco-friendly-workspace-green-office-design-trend-bring-outdoors-indoors-vertical-garden_335657-114.jpg?size=626&ext=jpg&ga=GA1.1.1856809106.1705679310&semt=ais);
+    /* background: url(https://img.freepik.com/free-vector/biophilic-design-workspace-abstract-concept-illustration-biophilic-room-eco-friendly-workspace-green-office-design-trend-bring-outdoors-indoors-vertical-garden_335657-114.jpg?size=626&ext=jpg&ga=GA1.1.1856809106.1705679310&semt=ais); */
     /* background-size: cover; */
     background-repeat: no-repeat;
     background-attachment: fixed;
@@ -324,9 +324,9 @@ header{
         
     }
 }
-@media (minax-width: 768px) and (max-height: 778px){
+@media (min-width: 768px) and (max-height: 778px){
     body{
-        background: url(https://img.freepik.com/free-vector/biophilic-design-workspace-abstract-concept-illustration-biophilic-room-eco-friendly-workspace-green-office-design-trend-bring-outdoors-indoors-vertical-garden_335657-114.jpg?size=626&ext=jpg&ga=GA1.1.1856809106.1705679310&semt=ais);
+        /* background: url(https://img.freepik.com/free-vector/biophilic-design-workspace-abstract-concept-illustration-biophilic-room-eco-friendly-workspace-green-office-design-trend-bring-outdoors-indoors-vertical-garden_335657-114.jpg?size=626&ext=jpg&ga=GA1.1.1856809106.1705679310&semt=ais); */
         /* background: none; */
         background-repeat: no-repeat;
         background-attachment: fixed;
@@ -368,7 +368,7 @@ header{
 @media (min-width: 1024px) and (max-height: 778px){
     body{
         /* background: none; */
-        background: url(https://img.freepik.com/free-vector/biophilic-design-workspace-abstract-concept-illustration-biophilic-room-eco-friendly-workspace-green-office-design-trend-bring-outdoors-indoors-vertical-garden_335657-114.jpg?size=626&ext=jpg&ga=GA1.1.1856809106.1705679310&semt=ais);
+        /* background: url(https://img.freepik.com/free-vector/biophilic-design-workspace-abstract-concept-illustration-biophilic-room-eco-friendly-workspace-green-office-design-trend-bring-outdoors-indoors-vertical-garden_335657-114.jpg?size=626&ext=jpg&ga=GA1.1.1856809106.1705679310&semt=ais); */
         background-size: 580px auto; /* Set width to 30px and height to auto */
   background-position: right center;
   background-repeat: no-repeat;

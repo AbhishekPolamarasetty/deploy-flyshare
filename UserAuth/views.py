@@ -198,9 +198,9 @@ def edit_profilePage(request):
 
 # @never_cache
 # @login_required(login_url='login')
-def profilePage(request):
-    user_posts = request.user.postmodel_set.all()
-    return render(request, 'Login/profile.html', {'user_posts': user_posts})
+# def profilePage(request):
+#     user_posts = request.user.postmodel_set.all()
+#     return render(request, 'Login/profile.html', {'user_posts': user_posts})
     # return render(request, 'Login/profile.html')
 
 # @never_cache
