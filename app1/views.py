@@ -8,13 +8,13 @@ from django.shortcuts import get_object_or_404
 from rest_framework.response import Response
 from django.views.decorators.cache import never_cache
 
-@never_cache
-@login_required(login_url='login')
+# @never_cache
+# @login_required(login_url='login')
 def getpostPage(request):
     return render(request,'Post/get-post.html')
 
-@never_cache
-@login_required(login_url='login')
+# @never_cache
+# @login_required(login_url='login')
 def helpPage(request):
     return render(request,'Post/help.html')
 # def postPage(request):
@@ -103,8 +103,8 @@ def generate_random_5_digit_number():
 
 
 # i am cahnging 
-@never_cache
-@login_required(login_url='login')
+# @never_cache
+# @login_required(login_url='login')
 def Post(request):
     if request.method == 'POST':
 
