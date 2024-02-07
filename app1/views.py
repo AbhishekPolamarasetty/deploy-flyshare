@@ -555,7 +555,7 @@ def get_room_name_helper(room_id):
 from django.http import JsonResponse
 from django.urls import reverse  
 # @never_cache
-# @login_required(login_url='login')
+@login_required(login_url='login')
 def profilePage(request):
     user = request.user
     if request.method == 'POST':
