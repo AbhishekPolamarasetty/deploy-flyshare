@@ -141,10 +141,10 @@ def Post(request):
         new_passenger.save()
     # chat_rooms = PostModel.objects.filter(user=request.user).exclude(chat_room_id__isnull=True)
     # entered_rooms = chat_rooms.filter(chat_room_id=request.user.username).exclude(chat_room_id__isnull=True)
-    # user_posts = PostModel.objects.filter(passenger_name=request.user.username)
+    user_posts = PostModel.objects.filter(passenger_name=request.user.username)
 
     return render(request, 'Post/post.html', {
-        # 'user_posts': user_posts,
+        'user_posts': user_posts,
         # 'chat_rooms' : chat_rooms,
         # 'entered_rooms': entered_rooms,
 
