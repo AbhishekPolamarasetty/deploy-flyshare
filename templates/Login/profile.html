@@ -1,4 +1,3 @@
-
 {% load static %}
 <!DOCTYPE html>
 <html lang="en">
@@ -82,13 +81,8 @@
             margin-bottom: 15px;
             padding: 8px;
             box-sizing: border-box;
-            border-radius: 5px;
-            border: none;
         }
-        input:hover{
-            border-radius: 5px;
-            border: 2px solid #581ed6;
-        }
+   
         img {
             width: 60px;
             height: 60px;
@@ -154,11 +148,9 @@
         }
  
         .profile-text {
-            margin-left: 300px;
+            margin-left: 100px;
             font-size: 24px;
-            color: #581ed6;
-            /* border: 3px solid black; */
-            text-align: center auto;
+            color: #581ed6
             /* #3498db; */
         }
  
@@ -212,48 +204,68 @@
     border-radius: 10px; /* Add rounded corners */
    
 }
-#chat-rooms-container,
+#chat-rooms-container{
+    list-style: none;
+    padding: 10px;
+    border: 2px solid black;
+    border-radius: 5px;
+    max-width: 300px;
+    background-color: white;
+    margin-right: 10px; /* Add margin to create space between the containers */
+}
 #messages-container {
     list-style: none;
     padding: 10px;
     border: 2px solid black;
     border-radius: 5px;
     max-width: 300px;
-    background-color: cornflowerblue;
+    background-color: white;
     margin-right: 10px; /* Add margin to create space between the containers */
 }
- 
+
 #chat-rooms-container li,
 #messages-container li {
     margin-bottom: 5px;
     color: black;
 }
- 
+
 #chat-rooms-container a,
 #messages-container a {
     text-decoration: none;
     color: #333;
 }
- 
+
 #chat-rooms-container a:hover,
 #messages-container a:hover {
     text-decoration: underline;
 }
- 
+
 /* Use Flexbox to display containers side by side */
 #container-wrapper {
     display: flex;
 }
+
 /* Add some margin for better spacing */
 #container-wrapper > div {
     margin-right: 20px;
 }
- 
+
 @media (max-width: 768px) {
     .post-item {
         flex: 0 0 calc(50% - 10px); /* 50% width with a gap of 10px (2 items in a row) */
     }
 }
+.no-data-image {
+    width: 50%; /* Adjust the width as needed */
+    margin-left: 25%;
+    height: auto; /* Maintain aspect ratio */
+    border-radius: 10px; /* Add rounded corners */
+}
+#logoutButton{
+    margin-left: 8px;
+    background-color: #FCFCFC;
+  }
+
     </style>
  
 </head>
@@ -305,10 +317,10 @@
             </li>
        
             <li>
-                <a href="{% url 'logout' %}" id="logoutButton">
-                    <i class='bx bxs-log-out-circle emoji' ></i>
+                <button id="logoutButton" data-logout-url="{% url 'logout' %}">
+                    <i class='bx bxs-log-out-circle emoji'></i>
                     <span class="text">Logout</span>
-                </a>
+                </button>
             </li>
         </ul>
     </section>
@@ -323,7 +335,7 @@
        
             <!-- NAVBAR -->
             <nav>
-                <!-- <i class='bx bx-menu' ></i> -->
+               <i class='bx bx-menu' ></i> 
                 <div class="profile-text">
                     <b>Enhance your profile! Make your profile shine.</b>
                 </div>
@@ -338,7 +350,6 @@
                 <img id="hiding" src="https://img.freepik.com/free-vector/designer-girl-concept-illustration_114360-2090.jpg?size=626&ext=jpg&ga=GA1.1.1894579647.1706434369" alt="Profile Image">
             </section>
             <div id="form-container" class="container">
-       
                 <div class="row height d-flex justify-content-center align-items-center">
                     <div class="col-md-8">
                         <div class="card py-5">
@@ -431,42 +442,43 @@
                     </div>
                 </div>
             </div>
-           
-           
+
            <div id="my-posts-container" class="post-container">
-    <div class="post-flex-container">
-        {% for post in user_posts %}
-            <div class="post-item">
-                <div class="post1-container">
-                    <strong>Passenger Name:</strong> {{ post.passenger_name }}<br>
-                    <strong>Date of Journey:</strong> {{ post.date_of_journey }}<br>
-                    <strong>Gender:</strong> {{ post.gender }}<br>
-                    <strong>Flight Number:</strong> {{ post.flight_number }}<br>
-                    <strong>PNR Number:</strong> {{ post.pnr_number }}<br>
-                    <strong>Source:</strong> {{ post.source }}<br>
-                    <strong>Destination:</strong> {{ post.destination }}<br>
-                    <strong>Baggage Space:</strong> {{ post.baggage_space }} kgs<br>
-                </div>
-                <div id="options-menu-{{ post.id }}" class="options-menu">
-                    <ul>
-                        <button type="button" class="btn btn-danger" onclick="confirmDelete('{{ post.id }}')">Delete</button>
-                    </ul>
-                </div>
+            <div class="post-flex-container">
+                {% if user_posts %}
+                    {% for post in user_posts %}
+                        <div class="post-item">
+                            <div class="post1-container">
+                                <strong>Passenger Name:</strong> {{ post.passenger_name }}<br>
+                                <strong>Date of Journey:</strong> {{ post.date_of_journey }}<br>
+                                <strong>Gender:</strong> {{ post.gender }}<br>
+                                <strong>Flight Number:</strong> {{ post.flight_number }}<br>
+                                <strong>PNR Number:</strong> {{ post.pnr_number }}<br>
+                                <strong>Source:</strong> {{ post.source }}<br>
+                                <strong>Destination:</strong> {{ post.destination }}<br>
+                                <strong>Baggage Space:</strong> {{ post.baggage_space }} kgs<br>
+                            </div>
+                            <div id="options-menu-{{ post.id }}" class="options-menu">
+                                <ul>
+                                    <button type="button" class="btn btn-danger" onclick="confirmDelete('{{ post.id }}')">Delete</button>
+                                </ul>
+                            </div>
+                        </div>
+                    {% endfor %}
+                {% else %}
+                <img class="no-data-image" src="https://img.freepik.com/free-vector/hand-drawn-no-data-concept_52683-127829.jpg?size=626&ext=jpg&ga=GA1.1.1894579647.1706434369&semt=ais" alt="No Data">                {% endif %}
             </div>
-        {% endfor %}
-    </div>
+            
 </div>
 <div id="container-wrapper">
+    
     <ul id="chat-rooms-container" class="submenu">
-        <h2>Created Rooms</h2>
         {% for post in user_posts %}
             {% if post.baggage_number %}
                 <li>
-                   
                     <a href="{% url 'room' room=post.baggage_number %}">
-                        <span class="text">{{ post.passenger_name }} - Room {{ post.baggage_number }}</span>
+                        <span class="text">{{ post.passenger_name }} - Created Room {{ post.baggage_number }}</span>
                     </a>
-         
                 </li>
             {% else %}
                 <li>
@@ -475,13 +487,11 @@
             {% endif %}
         {% endfor %}
     </ul>
- 
- 
-    <ul id="messages-container" class="submenu">
-        <h2>Joined Rooms</h2>
+    
+    <ul id="messages-container" class="submenu" style="display: none;">
+
         <!-- Your list items go here -->
     </ul>
- 
     </div>
  
         </main>
@@ -490,151 +500,70 @@
             <div>{% block content %} {% endblock %}</div>
         </div>
        
-       
+        
         <script>
-         
-           
-                document.addEventListener("DOMContentLoaded", function () {
-                    const allSideMenu = document.querySelectorAll('#sidebar .side-menu.top li a');
-                    const chatRoomsContainer = document.getElementById("messages-container");
-                   // const joinedChannelsContainer = document.getElementBhyId("joined-channels-container");
-               
-                    // Hide chat rooms and joined channels initially
-                    chatRoomsContainer.style.display = 'none';
-                   // joinedChannelsContainer.style.display = 'none';
-               
-                    allSideMenu.forEach(item => {
-                        const li = item.parentElement;
-               
-                        item.addEventListener('click', function () {
-                            allSideMenu.forEach(i => {
-                                i.parentElement.classList.remove('active');
-                            })
-                            li.classList.add('active');
-               
-                            // Toggle the visibility of Chats and Joined Channels based on the clicked icon
-                            chatRoomsContainer.style.display = item.id === "chats-link" ? "block" : "none";
-                          //  joinedChannelsContainer.style.display = item.id === "chats-link" ? "block" : "none";
-                        })
-                    });
-                });
-               
-            </script>
- <script>
-
-    document.addEventListener("DOMContentLoaded", function() {
-    
-    var fileInput = document.getElementById('file-input1');
-    
-    var updateButton = document.querySelector('.btn-primary');
-    
-    fileInput.addEventListener('change', function() {
-    
-    if (fileInput.files.length > 0) {
-    
-    updateButton.disabled = false;
-    
-    } else {
-    
-    updateButton.disabled = true; // Disable the button if no file is selected
-    
-    }
-    
-    });
-    
-    updateButton.addEventListener('click', function(event) {
-    
-    if (fileInput.files.length === 0) {
-    
-    event.preventDefault(); // Prevent form submission if no file is selected
-    
-    alert('Please select an image to update.');
-    
-    } else {
-    
-    var form = document.getElementById('edit-profile-form');
-    
-    var formData = new FormData(form);
-    
-    fetch(form.action, {
-    
-    method: 'POST',
-    
-    body: formData,
-    
-    })
-    
-    .then(response => {
-    
-    if (response.ok) {
-    
-    alert('Profile updated successfully!');
-    
-    location.reload();
-    
-    } else {
-    
-    alert('Error updating profile.');
-    
-    }
-    
-    })
-    
-    .catch(error => {
-    
-    console.error('Error:', error);
-    
-    alert('An error occurred while updating profile.');
-    
-    });
-    
-    }
-    
-    });
-    
-    });
-    
-    </script>
-        <script>
- 
- 
- 
-            function fetchMessages() {
-                fetch('/app1/getAllMessages/')  // Replace with the actual URL of your view
-                    .then(response => response.json())
-                    .then(data => {
-                        // Extract messages from the response
-                        const messages = data.messages;
-             
-                        // Extract unique combinations of user and room using a Set
-                        const uniqueUserRoomSet = new Set(messages.map(message => `${message.user}-${message.room_name}`));
-                        const uniqueUserRooms = Array.from(uniqueUserRoomSet);
-             
-                        // Display messages in the HTML page
-                        const messagesContainer = document.getElementById('messages-container');
-                        messagesContainer.innerHTML = '';  // Clear previous messages
-             
-                        uniqueUserRooms.forEach(userRoom => {
-                            const [user, room_name] = userRoom.split('-');
-                            const roomLink = document.createElement('a');
-                            roomLink.href = `/app1/${room_name}/`; // Replace with the actual URL pattern
-                            console.log(roomLink.href);
-                            roomLink.innerHTML = `<span class="text">${user} - Room - ${room_name}</span>`;
-                            roomLink.addEventListener('click', function (event) {
-                                event.preventDefault();  // Prevent the default link behavior
-                                window.location.href = roomLink.href;  // Navigate to the room URL
+                
+                function fetchMessages() {
+                    fetch('/app1/getAllMessages/')  // Replace with the actual URL of your view
+                        .then(response => response.json())
+                        .then(data => {
+                            // Extract messages from the response
+                            const messages = data.messages;
+            
+                            // Extract unique combinations of user and room using a Set
+                            const uniqueUserRoomSet = new Set(messages.map(message => `${message.user}-${message.room_name}`));
+                            const uniqueUserRooms = Array.from(uniqueUserRoomSet);
+            
+                            // Display messages in the HTML page
+                            const messagesContainer = document.getElementById('messages-container');
+                            messagesContainer.innerHTML = '';  // Clear previous messages
+            
+                            uniqueUserRooms.forEach(userRoom => {
+                                const [user, room_name] = userRoom.split('-');
+                                const roomLink = document.createElement('a');
+                                roomLink.href = `/app1/${room_name}/`; // Replace with the actual URL pattern
+                                console.log(roomLink.href);
+                                roomLink.innerHTML = `<span class="text">${user} - Joined Room - ${room_name}</span>`;
+                                roomLink.addEventListener('click', function (event) {
+                                    event.preventDefault();  // Prevent the default link behavior
+                                    window.location.href = roomLink.href;  // Navigate to the room URL
+                                });
+                                const messageElement = document.createElement('li');
+                                messageElement.appendChild(roomLink);
+                                messagesContainer.appendChild(messageElement);
                             });
-                            const messageElement = document.createElement('li');
-                            messageElement.appendChild(roomLink);
-                            messagesContainer.appendChild(messageElement);
-                        });
+                        })
+                        .catch(error => console.error('Error:', error));
+                }
+            
+                // Run fetchMessages on page load
+                window.onload = fetchMessages;
+
+        document.addEventListener("DOMContentLoaded", function () {
+            const allSideMenu = document.querySelectorAll('#sidebar .side-menu.top li a');
+            const chatRoomsContainer = document.getElementById("messages-container");
+           // const joinedChannelsContainer = document.getElementBhyId("joined-channels-container");
+       
+            // Hide chat rooms and joined channels initially
+            chatRoomsContainer.style.display = 'none';
+           // joinedChannelsContainer.style.display = 'none';
+       
+            allSideMenu.forEach(item => {
+                const li = item.parentElement;
+       
+                item.addEventListener('click', function () {
+                    allSideMenu.forEach(i => {
+                        i.parentElement.classList.remove('active');
                     })
-                    .catch(error => console.error('Error:', error));
-                 
-            }
-            window.onload = fetchMessages;
-            // Call the fetchMessages function when the page loads
-            //
+                    li.classList.add('active');
+       
+                    // Toggle the visibility of Chats and Joined Channels based on the clicked icon
+                    chatRoomsContainer.style.display = item.id === "chats-link" ? "block" : "none";
+                  //  joinedChannelsContainer.style.display = item.id === "chats-link" ? "block" : "none";
+                })
+            });
+        }); 
+ 
  
  
     document.addEventListener("DOMContentLoaded", function () {
@@ -704,10 +633,6 @@
         editProfileForm.addEventListener("input", function () {
             isFormDirty = true;
         });
-   
-        // Handle cancel button click
-        // Handle cancel button click
-       
         document.addEventListener("DOMContentLoaded", function () {
             // ... your existing code ...
        
@@ -1023,63 +948,111 @@
     }
 </script>  
    
-{% comment %}
-     <script>
-        window.onload = function () {
-            document.getElementById('logoutButton').addEventListener('click', function (event) {
-                event.preventDefault(); // Prevent the default form submission
-   
-                var logoutModal = document.getElementById('logoutModal');
-                logoutModal.style.display = 'flex';
-           
-                document.getElementById('confirmLogout').addEventListener('click', function () {
-                    // Redirect to the logout URL only if the user clicks "Yes"
-                    window.location.href = "{% url 'logout' %}";
-                });
-           
-                document.getElementById('cancelLogout').addEventListener('click', function () {
-                    logoutModal.style.display = 'none';
-                });
-            });
-        };
-    </script>
  
-  {% endcomment %}
- 
-    <script>
-        function confirmUpdateProfile() {
-            const csrfToken = getCookie('csrftoken');
-            const formData = new FormData($('#edit-profile-form')[0]);
-            console.log(formData);
-   
-            // Assuming your update profile endpoint is /app1/updateProfileAPI/
-            $.ajax({
-                type: 'POST',  // Use the appropriate HTTP method for updating profile
-                url: '/app1/profile/',  // Replace with your actual update profile endpoint
-                data: formData,
-                processData: false,
-                contentType: false,
-                headers: {
-                    'X-CSRFToken': csrfToken,
-                },
-                success: function (response) {
-                    // Show a single alert message
-                    alert('Profile updated successfully! Please refresh the page to see the updated profile.');
-                   
-                    // Reload the page immediately
-                    location.reload();
-                },
-                error: function (error) {
-                    console.error('Error updating profile:', error);
-                    alert('Failed to update the profile.');
-                }
-            });
-        }
-   
-   
+<script>  
+    function confirmUpdateProfile() {
+        const csrfToken = getCookie('csrftoken');
+        const formData = new FormData($('#edit-profile-form')[0]);
+    
+        $.ajax({
+            type: 'POST',  
+            url: '/app1/profile/',  
+            data: formData,
+            processData: false,
+            contentType: false,
+            headers: {
+                'X-CSRFToken': csrfToken,
+            },
+            success: function (response) {
+                alert('Profile updated successfully!');
+                
+                // Move the reload inside the success callback
+                location.reload();
+            },
+            error: function (error) {
+                console.error('Error updating profile:', error);
+                alert('Failed to update the profile.');
+            }
+        });
+    }
+</script>  
+<script>
+
+    document.addEventListener("DOMContentLoaded", function() {
+    
+    var fileInput = document.getElementById('file-input1');
+    
+    var updateButton = document.querySelector('.btn-primary');
+    
+    fileInput.addEventListener('change', function() {
+    
+    if (fileInput.files.length > 0) {
+    
+    updateButton.disabled = false;
+    
+    } else {
+    
+    updateButton.disabled = true; // Disable the button if no file is selected
+    
+    }
+    
+    });
+    
+    updateButton.addEventListener('click', function(event) {
+    
+    if (fileInput.files.length === 0) {
+    
+    event.preventDefault(); // Prevent form submission if no file is selected
+    
+    alert('Please select an image to update.');
+    
+    } else {
+    
+    var form = document.getElementById('edit-profile-form');
+    
+    var formData = new FormData(form);
+    
+    fetch(form.action, {
+    
+    method: 'POST',
+    
+    body: formData,
+    
+    })
+    
+    .then(response => {
+    
+    if (response.ok) {
+    
+    alert('Profile updated successfully!');
+    
+    location.reload();
+    
+    } else {
+    
+    alert('Error updating profile.');
+    
+    }
+    
+    })
+    
+    .catch(error => {
+    
+    console.error('Error:', error);
+    
+    alert('An error occurred while updating profile.');
+    
+    });
+    
+    }
+    
+    });
+    
+    });
+    
     </script>
-   
-     
-   
+
 </body>
 </html>
+
+
