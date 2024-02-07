@@ -324,7 +324,7 @@ header{
         
     }
 }
-@media (min-width: 768px) and (max-height: 778px){
+@media (minax-width: 768px) and (max-height: 778px){
     body{
         background: url(https://img.freepik.com/free-vector/biophilic-design-workspace-abstract-concept-illustration-biophilic-room-eco-friendly-workspace-green-office-design-trend-bring-outdoors-indoors-vertical-garden_335657-114.jpg?size=626&ext=jpg&ga=GA1.1.1856809106.1705679310&semt=ais);
         /* background: none; */
