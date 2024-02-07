@@ -14,5 +14,5 @@
     }
 
     // Check the session status every 30 seconds (adjust as needed)
-    setInterval(checkSession, 30000);
+    setInterval(checkSession, 3000);
 })();
