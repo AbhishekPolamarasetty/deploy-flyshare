@@ -254,16 +254,23 @@
     <div class="contact-form" id="contact">
       <div>{% block content %} {% endblock %}</div>
       <h1>Contact our team directly</h1>
-      <form  id="myForm" action="{% url 'submit_contact_form' %}" method="post">
+      <form id="form2" action="{% url 'submit_contact_form' %}" method="post">
+
         {% csrf_token %}
+        
         <!-- Your form fields here -->
+        
         <input type="text" name="fname" placeholder="First name" required />
+        
         <input type="text" name="lname" placeholder="Last name" required />
+        
         <input type="email" name="email" placeholder="Email address" required />
-       
+        
         <textarea name="query" id="" cols="30" rows="5" placeholder="Description"></textarea>
-        <button type="submit" id="submitBtn" >Submit</button>
-    </form>
+        
+        <button type="submit">Submit</button>
+        
+        </form>
     </div>
   </div>
   <footer>
@@ -333,30 +340,53 @@
     </div> -->
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
     <script src="{% static 'Login/js/index.js' %}"></script>
-    {% comment %} <script>
+    <script>
+
       $(document).ready(function () {
-          $('form').submit(function (e) {
-              e.preventDefault();
-              $.ajax({
-                  type: 'POST',
-                  url: '{% url "submit_contact_form" %}',
-                  data: $(this).serialize(),
-                  success: function (data) {
-                      if (data.success) {
-                          alert(data.message);  // You can replace this with a custom modal or popup
-                          // Clear the form if needed
-                          $('form')[0].reset();
-                      } else {
-                          alert('Error: ' + data.message);
-                      }
-                  },
-                  error: function () {
-                      alert('An error occurred while submitting the form.');
-                  }
-              });
-          });
+      
+      $('#form2').submit(function (e) {
+      
+      e.preventDefault();
+      
+      $.ajax({
+      
+      type: 'POST',
+      
+      url: '{% url "submit_contact_form" %}',
+      
+      data: $(this).serialize(),
+      
+      success: function (data) {
+      
+      if (data.success) {
+      
+      alert(data.message); // You can replace this with a custom modal or popup
+      
+      // Clear the form if needed
+      
+      $('#form2')[0].reset();
+      
+      } else {
+      
+      alert('Error: ' + data.message);
+      
+      }
+      
+      },
+      
+      error: function () {
+      
+      alert('An error occurred while submitting the form.');
+      
+      }
+      
       });
-  </script> {% endcomment %}
+      
+      });
+      
+      });
+      
+      </script>
   <!-- ... (your existing HTML code) ... -->
 
 <script>
